@@ -17,6 +17,12 @@ class App extends Component {
     this.setState({ content:event.target.value })
   }
 
+  deleteCharHandler = ( index ) => {
+    const newContent = this.state.content.split('');
+    newContent.splice(index, 1);
+    const updatedContent = newContent.join('');
+    this.setState({content: updatedContent});
+  }
   
 
   render() {
@@ -24,18 +30,21 @@ class App extends Component {
   
   let contentArray = this.state.content.split('');
 
-  let contentMap = [...contentArray];
-  // This is the part that I needed help with!!!
+  
+  // 5. Render a list of CharComponents where each Charcomponent receives a different letter of 
+  // the entered text.
+  // This is the part that I needed help with - I was able to render the list of components
+  // but I just needed the last push to get the index letter in the component.
   let contentRender = contentArray.map((charComp, index) => (
     <CharComponent
     character={charComp}
     key={index}
+    clicked={() => this.deleteCharHandler(index)}
     />
   )
 
   )
-  console.log(this.state.content.split(''));
-  console.log(contentMap);
+  
   return (
     <div className="App">
       <h1>Second Assignment</h1>
