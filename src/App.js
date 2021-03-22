@@ -18,9 +18,13 @@ class App extends Component {
   }
 
   deleteCharHandler = ( index ) => {
+    // newContent refers to/copies the array in the input field
     const newContent = this.state.content.split('');
+    // .splice method removes the character from the array at the specific index of the array.
     newContent.splice(index, 1);
+    // the array is then joined to create the new content array
     const updatedContent = newContent.join('');
+    // the array is then updated in the string and the character component is removed as well.
     this.setState({content: updatedContent});
   }
   
